@@ -2,7 +2,9 @@ package org.academiadecodigo.bootcamp.concurrency.bqueue;
 
 import org.academiadecodigo.bootcamp.concurrency.Pizza;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Blocking Queue
@@ -10,14 +12,14 @@ import java.util.PriorityQueue;
  */
 public class BQueue<T> {
 
-    private PriorityQueue<T> queue;
+    private Queue<T> queue;
     private int limit;
     /**
      * Constructs a new queue with a maximum size
      * @param limit the queue size
      */
     public BQueue(int limit) {
-        this.queue = new PriorityQueue<>();
+        this.queue = new LinkedList<>();
         this.limit = limit;
 
 
@@ -38,12 +40,11 @@ public class BQueue<T> {
                 e.printStackTrace();
             }
         }
-        System.out.println(getSize() + "pizzas no balcao");
+        System.out.println(getSize() + " pizzas no balcao");
         System.out.println(queue.offer(data));
-
-        notifyAll();
         System.out.println("Pizza added to the BQueue, it contains: " + getSize() + " pizzas.");
 
+        notifyAll();
 
     }
 
@@ -67,9 +68,6 @@ public class BQueue<T> {
 
         System.out.println("Pizza removed from the BQueue, it contains: " + getSize() + " pizzas.");
         return pizza;
-
-
-
 
     }
 
